@@ -1,9 +1,18 @@
 var React = require('react');
 
 var ProductPage = React.createClass({
+    getInitialState: function(){
+      return {productId: ""};  
+    },
+    componentDidMount: function() {
+      this.setState({pid: this.props.params.productId});  
+    },
+    componentWillReceiveProps: function(nextProps){
+      this.setState({pid: nextProps.params.productId});  
+    },
     render: function(){
         return (
-            
+            <h1>Hi, I'm product number {this.state.pid}</h1>
         );
     }
 });
