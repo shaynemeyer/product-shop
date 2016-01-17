@@ -19095,14 +19095,23 @@ module.exports = NavBar;
 var React = require('react');
 
 var NavItem = React.createClass({
-    displayName: 'NavItem',
+    displayName: "NavItem",
 
+    getInitialState: function () {
+        return { hover: false };
+    },
+    mouseOver: function (e) {
+        this.setState({ hover: true });
+    },
+    mouseOut: function (e) {
+        this.setState({ hover: false });
+    },
     render: function () {
         return React.createElement(
-            'li',
-            null,
+            "li",
+            { className: this.state.hover ? "active" : "", onMouseOver: this.mouseOver, onMouseOut: this.mouseOut },
             React.createElement(
-                'a',
+                "a",
                 { style: this.props.aStyle, href: this.props.href },
                 this.props.title
             )
@@ -19128,6 +19137,6 @@ var navLinks = [{
     href: "#"
 }];
 
-ReactDOM.render(React.createElement(NavBar, { bgColor: 'red', titleColor: 'white', linkColor: 'yellow', navData: navLinks }), document.getElementById('nav'));
+ReactDOM.render(React.createElement(NavBar, { bgColor: '#FFF', titleColor: '#3097d1', navData: navLinks }), document.getElementById('nav'));
 
 },{"./components/nav/NavBar.jsx":159,"react":157,"react-dom":1}]},{},[161]);
